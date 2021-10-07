@@ -10,7 +10,6 @@ customers.forEach( (customer) => {orderCount += customer.orders.length})
 app.use(express.json());
 
 app.post('/', (req, res) => {
-    console.log(req.body);
     res.send(processDialogFlowRequest(req, res))
 })
 
@@ -20,7 +19,6 @@ app.listen(port, () => {
 
 
 function processDialogFlowRequest(req, res) {
-    console.log("test");
     const parameters = req.body.queryResult.parameters;
     switch (req.body.queryResult.intent.displayName) {
         case 'product.order':
@@ -89,7 +87,12 @@ function getOrderInfo(orderId, customerId) {
 
 function cancelOrder(orderId, customerId) {
     if (!orderId || !customerId) return;
-    let order = getOrderInfo(orderId, customerId);
+
+    const order = customers
+        .find(customer => customer.customerId === customerId)
+        .orders
+        .find(order => order.orderId === orderId)
+
     let response;
     if (order.status === "canceled") {
         response = "order already canceld"
