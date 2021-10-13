@@ -12,6 +12,17 @@ public class Terminal {
 		BookManager bm = new BookManager();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		try {
+			System.out.println("                                        \n" +
+					"                   *****,.,*****        \n" +
+					"                .**            ***      \n" +
+					"         *********               **     \n" +
+					"       ***                        **    \n" +
+					"      **,       **    **     *    ****  \n" +
+					"   ******      ,*    **      **      ***\n" +
+					" ***           **    **     **        **\n" +
+					" **          *****     ***,           **\n" +
+					" ,**                                *** \n" +
+					"    ********************************    \n");
 			System.out.println("Hallo, please enter a line for the client and confirm with enter, q for quit, c to check the phone book.");
 			String line = "";
 			while (true) {
