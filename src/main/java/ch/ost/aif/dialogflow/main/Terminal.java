@@ -58,7 +58,7 @@ public class Terminal {
 				if (line.equals("q")) { // quit the application
 					break;
 				}
-				CustomRequestBuilder.detectIntentTexts("cloud10-espf", line, "abcde", language, bm);
+				CustomRequestBuilder.detectIntentTexts("cloud10-espf", line, "abcde", language);
 			}
 			System.out.println("Goodbye");
 		} catch (IOException e) {
