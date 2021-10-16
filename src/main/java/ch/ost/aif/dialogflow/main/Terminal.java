@@ -4,12 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import ch.ost.aif.book.BookManager;
 import ch.ost.aif.dialogflow.dialogflow.CustomRequestBuilder;
 
 public class Terminal {
 	public static void main(String[] args) {
-		BookManager bm = new BookManager();
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String language = "en-US";
 		try {
@@ -64,7 +62,6 @@ public class Terminal {
 			}
 			System.out.println("Goodbye");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

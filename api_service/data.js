@@ -2,14 +2,12 @@ export const products = [
     {
         productId: "P-0001",
         name: "IPhone 13",
-        description: "The latest IPhone",
         price: 1000,
         stock: 50
     },
     {
         productId: "P-0002",
         name: "IPhone 13 pro",
-        description: "The latest IPhone Pro",
         price: 1200,
         stock: 50
     }
