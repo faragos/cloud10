@@ -21,8 +21,8 @@ public class Terminal {
 					" **          *****     ***,           **\n" +
 					" ,**                                *** \n" +
 					"    ********************************    \n");
-			System.out.println("Welcome to Cloud 10!");
-			System.out.println("the store one above cloud 9");
+			System.out.println("         Welcome to Cloud 10!");
+			//System.out.println("the store one above cloud 9");
 
 			String line = "";
 			while (true) {
@@ -33,7 +33,7 @@ public class Terminal {
 				if (line.equals("q")) { // quit the application
 					break;
 				}
-				CustomRequestBuilder.detectIntentTexts("cloud10-espf", line, "abcde", "de-DE");
+				CustomRequestBuilder.detectIntentTexts("cloud10-espf", line, "abcde", "en-US");
 			}
 			System.out.println("Goodbye");
 		} catch (IOException e) {

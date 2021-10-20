@@ -40,7 +40,7 @@ let orderNotFound;
 let orderAlreadyCanceled;
 let orderSuccessfullyCanceled;
 let addRepair;
-
+const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
 
 function processDialogFlowRequest(req, res) {
     const parameters = req.body.queryResult.parameters;
@@ -104,11 +104,11 @@ function orderProduct(productId, customerId){
     if (language === 'de') {
         response = "Bestell ID: " + newOrder.orderId +
             " Status: " + statusLanguage(newOrder.status) +
-            " Lieferdatum: " + newOrder.deliveryDate.toDateString();
+            " Lieferdatum: " + newOrder.deliveryDate.toLocaleDateString("de-DE", options);
     } else {
         response = "Order ID: " + newOrder.orderId +
             " Status: " + newOrder.status +
-            " Delivery Date: " + newOrder.deliveryDate.toDateString();
+            " Delivery Date: " + newOrder.deliveryDate.toLocaleDateString("en-US",options);
     }
 
 
@@ -147,12 +147,12 @@ function getOrderInfo(orderId, customerId) {
         response = "Bestell ID: " + order.orderId +
             " Produkt: " + product.name +
             " Status: " + statusLanguage(order.status) +
-            " Lieferdatum: " + order.deliveryDate.toDateString();
+            " Lieferdatum: " + order.deliveryDate.toLocaleDateString("de-DE", options);
     } else {
         response = "Order ID: " + order.orderId +
             " Product: " + product.name +
             " Status: " + order.status +
-            " Delivery Date: " + order.deliveryDate.toDateString();
+            " Delivery Date: " + order.deliveryDate.toLocaleDateString("en-US", options);
     }
 
     return createDialogFlowResponse(response)
