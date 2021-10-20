@@ -1,17 +1,33 @@
 import express from 'express'
 import {customers} from './data.js'
 import {products} from './data.js'
+import {executeQueries} from './chat.js'
+import bodyParser from "body-parser";
 const app = express()
 const port = 3000
 let orderCount = 0;
 
 customers.forEach( (customer) => {orderCount += customer.orders.length})
 
+app.use(bodyParser.json());
 app.use(express.json());
+
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.post('/', (req, res) => {
     res.send(processDialogFlowRequest(req, res))
 })
+
+app.post('/chat', async (req, res) => {
+    const result = await executeQueries("cloud10-espf", "123456789", [req.body.newMessage], req.body.language)
+
+    res.send(JSON.stringify(result));
+})
+
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
@@ -29,6 +45,7 @@ let addRepair;
 function processDialogFlowRequest(req, res) {
     const parameters = req.body.queryResult.parameters;
     language = req.body.queryResult.languageCode;
+
     setLanguage()
     switch (req.body.queryResult.intent.displayName) {
         case 'product.order':
